@@ -1,9 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { Observable } from 'rxjs';
 import { UsersServiceService } from '../users-service.service';
 import {Router} from '@angular/router';
 import * as XLSX from 'xlsx';
-
+import {jsPDF} from 'jspdf';
+import html2canvas from 'html2canvas';
 @Component({
   selector: 'app-users-list-component',
   templateUrl: './users-list-component.component.html',
@@ -14,6 +15,7 @@ export class UsersListComponentComponent implements OnInit {
   usersList$: any =[] ;
   showModalEdit = false;
   fileName= 'ExcelSheet.xlsx';
+  title = 'app';
   constructor(private service : UsersServiceService) { }
 
   ngOnInit() : void {
@@ -64,5 +66,19 @@ export class UsersListComponentComponent implements OnInit {
        /* save to file */
        XLSX.writeFile(wb, this.fileName);
 
+    }
+    @ViewChild('content') content: any;
+    public SavePDF():void{
+
+      let DATA: any = document.getElementById('excel-table');
+      html2canvas(DATA).then((canvas) => {
+        let fileWidth = 208;
+        let fileHeight = (canvas.height * fileWidth) / canvas.width;
+        const FILEURI = canvas.toDataURL('image/png');
+        let PDF = new jsPDF('p', 'mm', 'a4');
+        let position = 0;
+        PDF.addImage(FILEURI, 'PNG', 0, position, fileWidth, fileHeight);
+        PDF.save('angular-demo.pdf');
+      })
     }
 }
