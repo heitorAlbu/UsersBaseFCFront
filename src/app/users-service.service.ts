@@ -14,4 +14,8 @@ export class UsersServiceService {
   getUsers():Observable<any[]>{
     return this.http.get<any>(this.usersBaseFCUrl + '/User');
   }
+
+  addUser(data:any){
+    return this.http.post(this.usersBaseFCUrl + '/User', data);
+  }
 }

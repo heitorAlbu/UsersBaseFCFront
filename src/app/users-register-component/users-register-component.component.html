@@ -1,0 +1,19 @@
+<form [formGroup]="formUserRegister">
+
+  <label for="name" class="form-label">Nome</label>
+  <input type="text" class="form-control" formControlName="name">
+  <label for="password" class="form-label">Senha</label>
+  <input type="password" class="form-control" formControlName="password">
+  <label for="email" class="form-label">E-mail</label>
+  <input type="text" class="form-control" formControlName="email">
+  <label for="fone" class="form-label">Telefone</label>
+  <input type="text" class="form-control" formControlName="fone">
+  <label for="cpf" class="form-label">CPF</label>
+  <input type="text" class="form-control" formControlName="cpf">
+  <label for="birthDate" class="form-label">Data de nascimento</label>
+  <input type="text" class="form-control" formControlName="birthDate">
+  <label for="motherName" class="form-label">Nome da mãe</label>
+  <input type="text" class="form-control" formControlName="motherName">
+
+  <button (click)="register(formUserRegister.value)" type="button" class="btn btn-primary">Save changes</button>
+</form>

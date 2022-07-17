@@ -6,11 +6,13 @@ import { UsersServiceService } from './users-service.service';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { UsersListComponentComponent } from './users-list-component/users-list-component.component';
+import { UsersRegisterComponentComponent } from './users-register-component/users-register-component.component';
 
 @NgModule({
-  declarations: [
+  declarations: [	
     AppComponent,
-      UsersListComponentComponent
+      UsersListComponentComponent,
+      UsersRegisterComponentComponent
    ],
   imports: [
     BrowserModule,

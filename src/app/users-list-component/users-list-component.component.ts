@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
 import { UsersServiceService } from '../users-service.service';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-users-list-component',
@@ -20,5 +21,24 @@ export class UsersListComponentComponent implements OnInit {
     });
 
   }
+  modalTitle = '';
+  activateUserRegisterComponent:boolean = false;
+  user:any;
 
+  modalAddUser(){
+    // this.user = {
+    //   id :0,
+    //   name:null,
+    //   password:null,
+    //   email:null,
+    //   fone:null,
+    //   cpf:null,
+    //   birthDate:null,
+    //   inclusionDate:null,
+    //   motherName:null,
+    //   isActive:true
+    // }
+    this.modalTitle = 'Novo usuário';
+    this.activateUserRegisterComponent = true;
+  }
 }
