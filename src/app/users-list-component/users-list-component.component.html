@@ -1,0 +1,44 @@
+<fieldset>
+  <h2>Listagem de Usuários</h2>
+</fieldset>
+
+
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th>Id</th>
+      <th>Nome</th>
+      <th>E-Mail</th>
+      <th>Fone</th>
+      <th>CPF</th>
+      <th>Data de nascimento</th>
+      <th>Data inclusão</th>
+      <th>Data alteração</th>
+      <th>Nome da Mãe</th>
+      <th>Ativo?</th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let item of usersList$">
+      <td>{{item.id}}</td>
+      <td>{{item.name}}</td>
+      <td>{{item.email}}</td>
+      <td>{{item.fone}}</td>
+      <td>{{item.cpf}}</td>
+      <td>{{item.birthDate}}</td>
+      <td>{{item.inclusionDate}}</td>
+      <td>{{item.changeDate}}</td>
+      <td>{{item.motherName}}</td>
+      <td>{{item.isActive}}</td>
+      <td><button type="button" class="btn btn-outline-primary">editar</button></td>
+
+      <td><button class="btn"><i class="fa fa-trash"></i></button></td>
+    </tr>
+  </tbody>
+</table>
+
+<div>
+  <button type="button" class="btn btn-success">novo</button>
+</div>
