@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
 import { UsersServiceService } from '../users-service.service';
 import {Router} from '@angular/router';
+import * as XLSX from 'xlsx';
 
 @Component({
   selector: 'app-users-list-component',
@@ -12,6 +13,7 @@ export class UsersListComponentComponent implements OnInit {
 
   usersList$: any =[] ;
   showModalEdit = false;
+  fileName= 'ExcelSheet.xlsx';
   constructor(private service : UsersServiceService) { }
 
   ngOnInit() : void {
@@ -47,4 +49,20 @@ export class UsersListComponentComponent implements OnInit {
     this.modalTitle = 'Editar usuário';
     this.activateUserRegisterComponent = true;
   }
+
+
+  exportexcel(): void
+    {
+       /* table id is passed over here */
+       let element = document.getElementById('excel-table');
+       const ws: XLSX.WorkSheet =XLSX.utils.table_to_sheet(element);
+
+       /* generate workbook and add the worksheet */
+       const wb: XLSX.WorkBook = XLSX.utils.book_new();
+       XLSX.utils.book_append_sheet(wb, ws, 'Sheet1');
+
+       /* save to file */
+       XLSX.writeFile(wb, this.fileName);
+
+    }
 }
