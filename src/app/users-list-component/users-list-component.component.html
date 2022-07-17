@@ -32,7 +32,9 @@
       <td>{{item.changeDate}}</td>
       <td>{{item.motherName}}</td>
       <td>{{item.isActive}}</td>
-      <td><button type="button" class="btn btn-outline-primary">editar</button></td>
+      <td><button (click)="modalEditUser(item)"  type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#updateModal">
+        editar
+      </button></td>
 
       <td><button class="btn"><i class="fa fa-trash"></i></button></td>
     </tr>
@@ -45,7 +47,7 @@
   Novo Usuário
 </button>
 
-<!-- Modal -->
+<!-- Modal Register-->
 <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
@@ -58,8 +60,11 @@
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-        <!-- <button type="button" class="btn btn-primary">Save changes</button> -->
+
       </div>
     </div>
   </div>
 </div>
+
+
+<app-users-update-component *ngIf="showModalEdit" [userItem]="user"></app-users-update-component>

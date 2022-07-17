@@ -11,12 +11,11 @@ import {Router} from '@angular/router';
 export class UsersListComponentComponent implements OnInit {
 
   usersList$: any =[] ;
-
+  showModalEdit = false;
   constructor(private service : UsersServiceService) { }
 
   ngOnInit() : void {
     this.service.getUsers().subscribe((res:any) => {
-      console.log('res',res)
       this.usersList$ = res.collections
     });
 
@@ -39,6 +38,13 @@ export class UsersListComponentComponent implements OnInit {
     //   isActive:true
     // }
     this.modalTitle = 'Novo usuário';
+    this.activateUserRegisterComponent = true;
+  }
+
+  modalEditUser(item:any){
+    this.showModalEdit = true;
+    this.user = item;
+    this.modalTitle = 'Editar usuário';
     this.activateUserRegisterComponent = true;
   }
 }
