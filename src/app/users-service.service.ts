@@ -20,6 +20,6 @@ export class UsersServiceService {
   }
 
   deleteUser(data:any){
-    return this.http.delete(this.usersBaseFCUrl + '/User/Remove/'+ data.id);
+    return this.http.post(this.usersBaseFCUrl + '/User/Remove', data);
   }
 }
