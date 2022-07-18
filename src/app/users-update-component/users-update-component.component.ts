@@ -1,4 +1,4 @@
-import { Component, Input, Output,EventEmitter ,OnInit } from '@angular/core';
+import { Component, Input, Output,EventEmitter ,OnInit, ViewChild } from '@angular/core';
 import { UsersServiceService } from '../users-service.service';
 import { FormBuilder,FormGroup,FormsModule, ReactiveFormsModule,Validators } from '@angular/forms';
 import { isNgTemplate } from '@angular/compiler';
@@ -9,32 +9,40 @@ import { isNgTemplate } from '@angular/compiler';
   styleUrls: ['./users-update-component.component.css']
 })
 export class UsersUpdateComponentComponent implements OnInit {
-  formUserUpdate: FormGroup;
+
   @Input() userItem : any;
+  formUserUpdate: FormGroup;
   user:any;
   constructor(private service: UsersServiceService, private formBuilder:FormBuilder) {
+
     this.formUserUpdate = this.formBuilder.group({
-      id :'',
-      name:'',
-      password:'',
-      email:'',
-      fone:'',
-      cpf:'',
-      birthDate:'',
-      inclusionDate:'',
-      motherName:'',
-      isActive:''
-    })
+      id :['3'],
+      name:['Heitor'],
+      password:['456'],
+      email:['dadsad'],
+      fone:['asdsad'],
+      cpf:['asdasd'],
+      birthDate:['03/02/1989'],
+      changeDate:[''],
+      motherName:['jkljklklj'],
+      isActive:[true]
+    });
 
    }
-   get f() {return this.formUserUpdate.controls;}
-  ngOnInit():void {
-    console.log('iniciou...');
+
+   ngOnInit():void {
     this.setUpdateData();
     console.log('this.user',this.user);
+    this.setFormData(this.user);
+    this.service.getUserById(this.userItem.Id).subscribe((res:any) => {
+      res.collections
+      //this.formUserUpdate.reset();
+    });
   }
+  get f() {return this.formUserUpdate.controls;}
+
   update(formUserUpdate :any ){
-    this.service.addUser(formUserUpdate).subscribe((res:any) => {
+    this.service.updateUser(formUserUpdate).subscribe((res:any) => {
       console.log('res',res)
       this.formUserUpdate.reset();
     })
@@ -44,7 +52,7 @@ export class UsersUpdateComponentComponent implements OnInit {
    this.user = {
     id : this.userItem.id,
     name:this.userItem.name,
-    password:this.userItem.password,
+    //password:this.userItem.password,
     email:this.userItem.email,
     fone:this.userItem.fone,
     cpf:this.userItem.cpf,
@@ -53,9 +61,9 @@ export class UsersUpdateComponentComponent implements OnInit {
     motherName:this.userItem.motherName,
     isActive:this.userItem.isActive
    }
-
-
     //this.user.name = this.formUserUpdate.get('name').setValue(this.user.name);
-
+  }
+  setFormData(user :any ){
+    //this.formUserUpdate.get('name').setValue(this.user.name);
   }
 }
