@@ -16,16 +16,16 @@ export class UsersUpdateComponentComponent implements OnInit {
   constructor(private service: UsersServiceService, private formBuilder:FormBuilder) {
 
     this.formUserUpdate = this.formBuilder.group({
-      id :['3'],
-      name:['Heitor'],
-      password:['456'],
-      email:['dadsad'],
-      fone:['asdsad'],
-      cpf:['asdasd'],
-      birthDate:['03/02/1989'],
+      id :[''],
+      name:[''],
+      password:[''],
+      email:[''],
+      fone:[''],
+      cpf:[''],
+      birthDate:[''],
       changeDate:[''],
-      motherName:['jkljklklj'],
-      isActive:[true]
+      motherName:[''],
+      isActive:[]
     });
 
    }
@@ -33,7 +33,7 @@ export class UsersUpdateComponentComponent implements OnInit {
    ngOnInit():void {
     this.setUpdateData();
     console.log('this.user',this.user);
-    this.setFormData(this.user);
+    //this.setFormData(this.user);
     this.service.getUserById(this.userItem.Id).subscribe((res:any) => {
       res.collections
       //this.formUserUpdate.reset();
@@ -49,19 +49,30 @@ export class UsersUpdateComponentComponent implements OnInit {
   }
 
   setUpdateData() {
-   this.user = {
-    id : this.userItem.id,
-    name:this.userItem.name,
-    //password:this.userItem.password,
-    email:this.userItem.email,
-    fone:this.userItem.fone,
-    cpf:this.userItem.cpf,
-    birthDate:this.userItem.birthDate,
-    inclusionDate:this.userItem.inclusionDate,
-    motherName:this.userItem.motherName,
-    isActive:this.userItem.isActive
-   }
-    //this.user.name = this.formUserUpdate.get('name').setValue(this.user.name);
+      this.user = {
+       id : this.userItem.id,
+       name:this.userItem.name,
+       //password:this.userItem.password,
+       email:this.userItem.email,
+       fone:this.userItem.fone,
+       cpf:this.userItem.cpf,
+       birthDate:this.userItem.birthDate,
+       inclusionDate:this.userItem.inclusionDate,
+       motherName:this.userItem.motherName,
+       isActive:this.userItem.isActive
+      }
+       this.formUserUpdate = this.formBuilder.group({
+        id :[this.user.id],
+        name:[this.user.name],
+        password:[''],
+        email:[this.user.email],
+        fone:[this.user.fone],
+        cpf:[this.user.cpf],
+        birthDate:[this.user.birthDate],
+        changeDate:[''],
+        motherName:[this.user.motherName],
+        isActive:[true]
+      });
   }
   setFormData(user :any ){
     //this.formUserUpdate.get('name').setValue(this.user.name);
