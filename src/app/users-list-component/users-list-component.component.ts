@@ -16,6 +16,9 @@ export class UsersListComponentComponent implements OnInit {
   showModalEdit = false;
   fileName= 'ExcelSheet.xlsx';
   title = 'app';
+  nameFilterText: string = '';
+
+
   constructor(private service : UsersServiceService) { }
 
   ngOnInit() : void {
@@ -56,7 +59,7 @@ export class UsersListComponentComponent implements OnInit {
   exportexcel(): void
     {
        /* table id is passed over here */
-       let element = document.getElementById('excel-table');
+       let element = document.getElementById('users-table');
        const ws: XLSX.WorkSheet =XLSX.utils.table_to_sheet(element);
 
        /* generate workbook and add the worksheet */
@@ -70,7 +73,7 @@ export class UsersListComponentComponent implements OnInit {
     @ViewChild('content') content: any;
     public SavePDF():void{
 
-      let DATA: any = document.getElementById('excel-table');
+      let DATA: any = document.getElementById('users-table');
       html2canvas(DATA).then((canvas) => {
         let fileWidth = 208;
         let fileHeight = (canvas.height * fileWidth) / canvas.width;
