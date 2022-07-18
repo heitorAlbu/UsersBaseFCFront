@@ -4,13 +4,13 @@ import { UsersListComponentComponent } from "./users-list-component/users-list-c
   name: 'userFilter'
 })
 export class FilterPipe implements PipeTransform{
-  transform(usersList$: any[], nameFilterText: string) {
-    if(usersList$.length === 0 || nameFilterText === ''){
-      return usersList$;
-    }else{
-      return usersList$.filter((user) => {
-        return user.name.toLowerCase() === nameFilterText.toLowerCase();
-      })
+  transform(value: Array<any>, nameFilterText: string):any {
+    if(nameFilterText){
+      nameFilterText = nameFilterText.toUpperCase();
+      return value.filter(a => a.name.toUpperCase().indexOf(nameFilterText)>=0);
+    }
+    else{
+      return value;
     }
   }
 }

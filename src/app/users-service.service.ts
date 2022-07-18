@@ -18,4 +18,8 @@ export class UsersServiceService {
   addUser(data:any){
     return this.http.post(this.usersBaseFCUrl + '/User', data);
   }
+
+  deleteUser(data:any){
+    return this.http.delete(this.usersBaseFCUrl + '/User/Remove/'+ data.id);
+  }
 }

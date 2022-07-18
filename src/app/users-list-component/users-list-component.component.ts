@@ -55,6 +55,12 @@ export class UsersListComponentComponent implements OnInit {
     this.activateUserRegisterComponent = true;
   }
 
+  desactivateUser(item:any){
+    console.log('entrou', item.id)
+    this.service.deleteUser(item).subscribe((res:any) => {
+      console.log('res',res)
+    })
+  }
 
   exportexcel(): void
     {

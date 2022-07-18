@@ -22,7 +22,7 @@
     </tr>
   </thead>
   <tbody>
-    <tr *ngFor="let item of usersList$ | userFilter:nameFilterText">
+    <tr *ngFor="let item of usersList$ | userFilter: nameFilterText">
       <td>{{item.id}}</td>
       <td>{{item.name}}</td>
       <td>{{item.email}}</td>
@@ -37,7 +37,7 @@
         editar
       </button></td>
 
-      <td><button class="btn"><i class="fa fa-trash"></i></button></td>
+      <td><button (click)="desactivateUser(item)" class="btn"><i class="fa fa-trash" ></i></button></td>
     </tr>
   </tbody>
 </table>
