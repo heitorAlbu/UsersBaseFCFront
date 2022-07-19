@@ -12,11 +12,15 @@ import html2canvas from 'html2canvas';
 })
 export class UsersListComponentComponent implements OnInit {
 
-  usersList$: any =[] ;
+  usersList: any =[] ;
   showModalEdit = false;
   fileName= 'ExcelSheet.xlsx';
-  nameFilterText: string = '';
-
+  nameFilterText : string = '';
+  cpfFilterText : string = '';
+  foneFilterText : string = '';
+  emailFilterText : string = '';
+  statusFilterText : string = '';
+  motherNameFilterText : string = '';
   title='pagination';
   POSTS:any;
   page:number= 1;
@@ -32,7 +36,7 @@ export class UsersListComponentComponent implements OnInit {
 
   getList(){
     this.service.getUsers().subscribe((res:any) => {
-      this.usersList$ = res.collections
+      this.usersList = res.collections
     });
   }
   modalTitle = '';

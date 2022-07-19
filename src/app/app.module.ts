@@ -8,8 +8,13 @@ import { AppComponent } from './app.component';
 import { UsersListComponentComponent } from './users-list-component/users-list-component.component';
 import { UsersRegisterComponentComponent } from './users-register-component/users-register-component.component';
 import { UsersUpdateComponentComponent } from './users-update-component/users-update-component.component';
-import { FilterPipe } from './filter.pipe';
+import { FilterPipe, } from './pipes/filter.pipe';
 import { NgxPaginationModule } from 'ngx-pagination';
+import { FilterCPFPipe } from './pipes/filter.cpf.pipe';
+import { FilterFonePipe } from './pipes/filter.fone.pipe';
+import { FilterEmailPipe } from './pipes/filter.email.pipe';
+import { FilterMotherNamePipe } from './pipes/filter.motherName.pipe';
+import { FilterStatusPipe } from './pipes/filter.status.pipe';
 
 @NgModule({
   declarations: [
@@ -17,7 +22,12 @@ import { NgxPaginationModule } from 'ngx-pagination';
       UsersListComponentComponent,
       UsersRegisterComponentComponent,
       UsersUpdateComponentComponent,
-      FilterPipe
+      FilterPipe,
+      FilterCPFPipe,
+      FilterFonePipe,
+      FilterEmailPipe,
+      FilterMotherNamePipe,
+      FilterStatusPipe
    ],
   imports: [
     BrowserModule,

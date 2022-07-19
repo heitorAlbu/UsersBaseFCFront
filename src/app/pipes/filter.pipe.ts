@@ -1,5 +1,5 @@
 import { Pipe, PipeTransform } from "@angular/core";
-import { UsersListComponentComponent } from "./users-list-component/users-list-component.component";
+import { UsersListComponentComponent } from "../users-list-component/users-list-component.component";
 @Pipe({
   name: 'userFilter'
 })

@@ -2,7 +2,26 @@
   <h2>Listagem de Usuários</h2>
 </fieldset>
 <div>
-  <input type="text" placeholder="nome" style="width: 450px; padding: 2px 20px; margin: 10px 0px; height: 30px;" [(ngModel)]="nameFilterText">
+  <input type="text" placeholder="Nome" style="width: 450px; padding: 2px 20px; margin: 10px 0px; height: 30px;" [(ngModel)]="nameFilterText">
+</div>
+<div>
+  <input type="text" placeholder="E-Mail" style="width: 450px; padding: 2px 20px; margin: 10px 0px; height: 30px;" [(ngModel)]="emailFilterText">
+</div>
+<div>
+  <input type="text" placeholder="Fone" style="width: 450px; padding: 2px 20px; margin: 10px 0px; height: 30px;" [(ngModel)]="foneFilterText">
+</div>
+<div>
+  <input type="text" placeholder="CPF" style="width: 450px; padding: 2px 20px; margin: 10px 0px; height: 30px;" [(ngModel)]="cpfFilterText">
+</div>
+<div>
+  <input type="text" placeholder="Nome da mãe" style="width: 450px; padding: 2px 20px; margin: 10px 0px; height: 30px;" [(ngModel)]="motherNameFilterText">
+</div>
+<div>
+  <!-- <select data-bind="booleanValue: state" >
+    <option value="true" [(ngModel)]="statusFilterText">On</option>
+    <option value="false" [(ngModel)]="statusFilterText">Off</option>
+</select> -->
+
 </div>
 <div>
   <select (change)="onTableSizeChange($event)">
@@ -29,7 +48,13 @@
     </tr>
   </thead>
   <tbody>
-    <tr *ngFor="let item of usersList$ | userFilter: nameFilterText | paginate:{itemsPerPage:tableSize,currentPage:page,totalItems:count}; let i = index">
+    <tr *ngFor="let item of usersList
+                                    | userFilter : nameFilterText
+                                    | emailFilter : emailFilterText
+                                    | cpfFilter : cpfFilterText
+                                    | foneFilter : foneFilterText
+                                    | motherNameFilter : motherNameFilterText
+                                    | paginate:{itemsPerPage:tableSize,currentPage:page,totalItems:count}; let i = index">
       <td>{{item.id}}</td>
       <td>{{item.name}}</td>
       <td>{{item.email}}</td>
