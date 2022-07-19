@@ -15,6 +15,7 @@ import { FilterFonePipe } from './pipes/filter.fone.pipe';
 import { FilterEmailPipe } from './pipes/filter.email.pipe';
 import { FilterMotherNamePipe } from './pipes/filter.motherName.pipe';
 import { FilterStatusPipe } from './pipes/filter.status.pipe';
+import { FilterAgePipe } from './pipes/filter.age.pipe';
 
 @NgModule({
   declarations: [
@@ -27,7 +28,8 @@ import { FilterStatusPipe } from './pipes/filter.status.pipe';
       FilterFonePipe,
       FilterEmailPipe,
       FilterMotherNamePipe,
-      FilterStatusPipe
+      FilterStatusPipe,
+      FilterAgePipe
    ],
   imports: [
     BrowserModule,

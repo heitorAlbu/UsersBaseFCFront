@@ -1,14 +1,21 @@
 <fieldset>
-  <h2>Listagem de Usuários</h2>
+  <h2>Usuários</h2>
 </fieldset>
 
-  <div class="input-group" >
+  <div id="filters" class="input-group" >
     <input type="text" placeholder="Nome" class="form-control" [(ngModel)]="nameFilterText">
     <input type="text" placeholder="E-Mail" class="form-control" [(ngModel)]="emailFilterText">
     <input type="text" placeholder="Fone" class="form-control" [(ngModel)]="foneFilterText">
-    <input type="text" placeholder="Fone" class="form-control" [(ngModel)]="foneFilterText">
     <input type="text" placeholder="CPF"  class="form-control" [(ngModel)]="cpfFilterText">
     <input type="text" placeholder="Nome da mãe" class="form-control" [(ngModel)]="motherNameFilterText">
+    <select class="form-select" style="width: 65px;" [(ngModel)]="ageFilterText">
+      <option value="">Selecione a faixa etária</option>
+      <option value="1">18 - 26</option>
+      <option value="2">25 - 31</option>
+      <option value="3">30 - 36</option>
+      <option value="4">35 - 41</option>
+      <option value="5">40+ </option>
+    </select>
   </div>
 
 
@@ -44,6 +51,7 @@
                                     | cpfFilter : cpfFilterText
                                     | foneFilter : foneFilterText
                                     | motherNameFilter : motherNameFilterText
+                                    |ageFilter: ageFilterText
                                     | paginate:{itemsPerPage:tableSize,currentPage:page,totalItems:count}; let i = index">
       <td>{{item.id}}</td>
       <td>{{item.name}}</td>
@@ -72,11 +80,11 @@
   </pagination-controls>
 </div>
 
-<button (click)="exportexcel()" type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#exampleModal">
+<button (click)="exportexcel()" type="button" class="btn btn-success" data-bs-toggle="modal">
   EXCEL
 </button>
 
-<button (click)="SavePDF()" type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#exampleModal">
+<button (click)="SavePDF()" type="button" class="btn btn-danger" data-bs-toggle="modal">
   PDF
 </button>
 

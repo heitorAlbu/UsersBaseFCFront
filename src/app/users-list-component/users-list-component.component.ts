@@ -21,6 +21,7 @@ export class UsersListComponentComponent implements OnInit {
   emailFilterText : string = '';
   statusFilterText : string = '';
   motherNameFilterText : string = '';
+  ageFilterText: string = '';
   title='pagination';
   POSTS:any;
   page:number= 1;
