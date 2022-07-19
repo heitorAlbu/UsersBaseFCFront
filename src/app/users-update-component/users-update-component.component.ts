@@ -44,7 +44,7 @@ export class UsersUpdateComponentComponent implements OnInit {
     this.service.updateUser(formUserUpdate).subscribe((res:any) => {
       console.log('res',res)
       this.formUserUpdate.reset();
-
+      window.location.reload();
     })
   }
 
@@ -71,7 +71,7 @@ export class UsersUpdateComponentComponent implements OnInit {
         birthDate:[this.user.birthDate],
         changeDate:[''],
         motherName:[this.user.motherName],
-        isActive:[true]
+        isActive:[this.user.isActive]
       });
   }
 }

@@ -1,30 +1,20 @@
 <fieldset>
   <h2>Listagem de Usuários</h2>
 </fieldset>
-<div>
-  <input type="text" placeholder="Nome" style="width: 450px; padding: 2px 20px; margin: 10px 0px; height: 30px;" [(ngModel)]="nameFilterText">
-</div>
-<div>
-  <input type="text" placeholder="E-Mail" style="width: 450px; padding: 2px 20px; margin: 10px 0px; height: 30px;" [(ngModel)]="emailFilterText">
-</div>
-<div>
-  <input type="text" placeholder="Fone" style="width: 450px; padding: 2px 20px; margin: 10px 0px; height: 30px;" [(ngModel)]="foneFilterText">
-</div>
-<div>
-  <input type="text" placeholder="CPF" style="width: 450px; padding: 2px 20px; margin: 10px 0px; height: 30px;" [(ngModel)]="cpfFilterText">
-</div>
-<div>
-  <input type="text" placeholder="Nome da mãe" style="width: 450px; padding: 2px 20px; margin: 10px 0px; height: 30px;" [(ngModel)]="motherNameFilterText">
-</div>
-<div>
-  <!-- <select data-bind="booleanValue: state" >
-    <option value="true" [(ngModel)]="statusFilterText">On</option>
-    <option value="false" [(ngModel)]="statusFilterText">Off</option>
-</select> -->
 
-</div>
+  <div class="input-group" >
+    <input type="text" placeholder="Nome" class="form-control" [(ngModel)]="nameFilterText">
+    <input type="text" placeholder="E-Mail" class="form-control" [(ngModel)]="emailFilterText">
+    <input type="text" placeholder="Fone" class="form-control" [(ngModel)]="foneFilterText">
+    <input type="text" placeholder="Fone" class="form-control" [(ngModel)]="foneFilterText">
+    <input type="text" placeholder="CPF"  class="form-control" [(ngModel)]="cpfFilterText">
+    <input type="text" placeholder="Nome da mãe" class="form-control" [(ngModel)]="motherNameFilterText">
+  </div>
+
+
+  <!-- style="width: 450px; padding: 2px 20px; margin: 10px 0px; height: 30px;" -->
 <div>
-  <select (change)="onTableSizeChange($event)">
+  <select class="form-select" style="width: 65px;"  (change)="onTableSizeChange($event)">
     <option *ngFor="let size of tableSizes">
       {{size}}
     </option>
@@ -82,15 +72,20 @@
   </pagination-controls>
 </div>
 
-<a style="cursor: pointer" (click)="exportexcel()">
-  excel
-</a>
-<a style="cursor: pointer" (click)="SavePDF()">
-  pdf
-</a>
+<button (click)="exportexcel()" type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#exampleModal">
+  EXCEL
+</button>
+
+<button (click)="SavePDF()" type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#exampleModal">
+  PDF
+</button>
+
+<button type="button" class="btn btn-info" (click)="getAllUsersList()">
+  Carregar todos os usuários
+</button>
 
 <!-- Button trigger modal -->
-<button (click)="modalAddUser()" type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#exampleModal">
+<button (click)="modalAddUser()" type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
   Novo Usuário
 </button>
 

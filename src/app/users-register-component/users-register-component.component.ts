@@ -31,7 +31,7 @@ export class UsersRegisterComponentComponent implements OnInit {
     this.service.addUser(formUserRegister).subscribe((res:any) => {
       console.log('res',res)
       this.formUserRegister.reset();
-
+      window.location.reload();
     })
 
   }

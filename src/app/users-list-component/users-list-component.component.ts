@@ -27,6 +27,7 @@ export class UsersListComponentComponent implements OnInit {
   count:number=0;
   tableSize:number=10;
   tableSizes:any = [5,10,15,20];
+  allUsersFlag:boolean = false;
 
   constructor(private service : UsersServiceService) { }
 
@@ -36,8 +37,16 @@ export class UsersListComponentComponent implements OnInit {
 
   getList(){
     this.service.getUsers().subscribe((res:any) => {
-      this.usersList = res.collections
+      this.usersList = res.collections.filter((p:any)=> p.isActive === true)
     });
+    this.allUsersFlag = false;
+  }
+
+  getAllUsersList(){
+    this.service.getUsers().subscribe((res:any) => {
+      this.usersList = res.collections;
+    });
+    this.allUsersFlag = true;
   }
   modalTitle = '';
   activateUserRegisterComponent:boolean = false;
@@ -58,7 +67,7 @@ export class UsersListComponentComponent implements OnInit {
   desactivateUser(item:any){
     console.log('entrou', item.id)
     this.service.deleteUser(item).subscribe((res:any) => {
-      console.log('res',res)
+      window.location.reload();
     })
   }
 
@@ -85,12 +94,21 @@ export class UsersListComponentComponent implements OnInit {
     }
     onTableDataChange(event:any){
       this.page = event;
-      this.getList();
+      if(this.allUsersFlag){
+        this.getAllUsersList();
+      }else{
+        this.getList();
+      }
+
     }
 
     onTableSizeChange(event:any):void{
       this.tableSize = event.target.value;
       this.page = 1;
-      this.getList();
+      if(this.allUsersFlag){
+        this.getAllUsersList();
+      }else{
+        this.getList();
+      }
     }
 }
