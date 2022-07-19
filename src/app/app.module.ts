@@ -9,6 +9,7 @@ import { UsersListComponentComponent } from './users-list-component/users-list-c
 import { UsersRegisterComponentComponent } from './users-register-component/users-register-component.component';
 import { UsersUpdateComponentComponent } from './users-update-component/users-update-component.component';
 import { FilterPipe } from './filter.pipe';
+import { NgxPaginationModule } from 'ngx-pagination';
 
 @NgModule({
   declarations: [
@@ -23,7 +24,8 @@ import { FilterPipe } from './filter.pipe';
     AppRoutingModule,
     HttpClientModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    NgxPaginationModule
   ],
   providers: [UsersServiceService],
   bootstrap: [AppComponent]

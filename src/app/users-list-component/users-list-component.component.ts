@@ -15,35 +15,31 @@ export class UsersListComponentComponent implements OnInit {
   usersList$: any =[] ;
   showModalEdit = false;
   fileName= 'ExcelSheet.xlsx';
-  title = 'app';
   nameFilterText: string = '';
 
+  title='pagination';
+  POSTS:any;
+  page:number= 1;
+  count:number=0;
+  tableSize:number=10;
+  tableSizes:any = [5,10,15,20];
 
   constructor(private service : UsersServiceService) { }
 
   ngOnInit() : void {
+    this.getList();
+  }
+
+  getList(){
     this.service.getUsers().subscribe((res:any) => {
       this.usersList$ = res.collections
     });
-
   }
   modalTitle = '';
   activateUserRegisterComponent:boolean = false;
   user:any;
 
   modalAddUser(){
-    // this.user = {
-    //   id :0,
-    //   name:null,
-    //   password:null,
-    //   email:null,
-    //   fone:null,
-    //   cpf:null,
-    //   birthDate:null,
-    //   inclusionDate:null,
-    //   motherName:null,
-    //   isActive:true
-    // }
     this.modalTitle = 'Novo usuário';
     this.activateUserRegisterComponent = true;
   }
@@ -64,21 +60,14 @@ export class UsersListComponentComponent implements OnInit {
 
   exportexcel(): void
     {
-       /* table id is passed over here */
-       let element = document.getElementById('users-table');
-       const ws: XLSX.WorkSheet =XLSX.utils.table_to_sheet(element);
-
-       /* generate workbook and add the worksheet */
-       const wb: XLSX.WorkBook = XLSX.utils.book_new();
-       XLSX.utils.book_append_sheet(wb, ws, 'Sheet1');
-
-       /* save to file */
-       XLSX.writeFile(wb, this.fileName);
-
+      let element = document.getElementById('users-table');
+      const ws: XLSX.WorkSheet =XLSX.utils.table_to_sheet(element);
+      const wb: XLSX.WorkBook = XLSX.utils.book_new();
+      XLSX.utils.book_append_sheet(wb, ws, 'Sheet1');
+      XLSX.writeFile(wb, this.fileName);
     }
     @ViewChild('content') content: any;
     public SavePDF():void{
-
       let DATA: any = document.getElementById('users-table');
       html2canvas(DATA).then((canvas) => {
         let fileWidth = 208;
@@ -89,5 +78,15 @@ export class UsersListComponentComponent implements OnInit {
         PDF.addImage(FILEURI, 'PNG', 0, position, fileWidth, fileHeight);
         PDF.save('angular-demo.pdf');
       })
+    }
+    onTableDataChange(event:any){
+      this.page = event;
+      this.getList();
+    }
+
+    onTableSizeChange(event:any):void{
+      this.tableSize = event.target.value;
+      this.page = 1;
+      this.getList();
     }
 }

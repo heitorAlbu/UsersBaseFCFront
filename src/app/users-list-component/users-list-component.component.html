@@ -4,6 +4,13 @@
 <div>
   <input type="text" placeholder="nome" style="width: 450px; padding: 2px 20px; margin: 10px 0px; height: 30px;" [(ngModel)]="nameFilterText">
 </div>
+<div>
+  <select (change)="onTableSizeChange($event)">
+    <option *ngFor="let size of tableSizes">
+      {{size}}
+    </option>
+  </select>
+</div>
 <table id="users-table" class="table table-striped">
   <thead>
     <tr>
@@ -22,7 +29,7 @@
     </tr>
   </thead>
   <tbody>
-    <tr *ngFor="let item of usersList$ | userFilter: nameFilterText">
+    <tr *ngFor="let item of usersList$ | userFilter: nameFilterText | paginate:{itemsPerPage:tableSize,currentPage:page,totalItems:count}; let i = index">
       <td>{{item.id}}</td>
       <td>{{item.name}}</td>
       <td>{{item.email}}</td>
@@ -41,6 +48,15 @@
     </tr>
   </tbody>
 </table>
+<div>
+  <pagination-controls
+  previousLabel="Prev"
+  nextLabel="Next"
+  (pageChange)="onTableDataChange($event)"
+  >
+  </pagination-controls>
+</div>
+
 <a style="cursor: pointer" (click)="exportexcel()">
   excel
 </a>

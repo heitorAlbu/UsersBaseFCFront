@@ -9,10 +9,10 @@ import { isNgTemplate } from '@angular/compiler';
   styleUrls: ['./users-update-component.component.css']
 })
 export class UsersUpdateComponentComponent implements OnInit {
-
   @Input() userItem : any;
   formUserUpdate: FormGroup;
   user:any;
+
   constructor(private service: UsersServiceService, private formBuilder:FormBuilder) {
 
     this.formUserUpdate = this.formBuilder.group({
@@ -28,40 +28,40 @@ export class UsersUpdateComponentComponent implements OnInit {
       isActive:[]
     });
 
-   }
-
-   ngOnInit():void {
-    this.setUpdateData();
-    console.log('this.user',this.user);
-    //this.setFormData(this.user);
-    this.service.getUserById(this.userItem.Id).subscribe((res:any) => {
-      res.collections
-      //this.formUserUpdate.reset();
-    });
   }
+
+  ngOnInit():void {
+    this.setUpdateData();
+    // console.log('this.user',this.user);
+    // this.service.getUserById(this.userItem.Id).subscribe((res:any) => {
+    //   res.collections
+    // });
+  }
+
   get f() {return this.formUserUpdate.controls;}
 
   update(formUserUpdate :any ){
     this.service.updateUser(formUserUpdate).subscribe((res:any) => {
       console.log('res',res)
       this.formUserUpdate.reset();
+
     })
   }
 
   setUpdateData() {
-      this.user = {
-       id : this.userItem.id,
-       name:this.userItem.name,
-       //password:this.userItem.password,
-       email:this.userItem.email,
-       fone:this.userItem.fone,
-       cpf:this.userItem.cpf,
-       birthDate:this.userItem.birthDate,
-       inclusionDate:this.userItem.inclusionDate,
-       motherName:this.userItem.motherName,
-       isActive:this.userItem.isActive
-      }
-       this.formUserUpdate = this.formBuilder.group({
+    this.user = {
+      id : this.userItem.id,
+      name:this.userItem.name,
+      //password:this.userItem.password,
+      email:this.userItem.email,
+      fone:this.userItem.fone,
+      cpf:this.userItem.cpf,
+      birthDate:this.userItem.birthDate,
+      inclusionDate:this.userItem.inclusionDate,
+      motherName:this.userItem.motherName,
+      isActive:this.userItem.isActive
+    }
+      this.formUserUpdate = this.formBuilder.group({
         id :[this.user.id],
         name:[this.user.name],
         password:[''],
@@ -73,8 +73,5 @@ export class UsersUpdateComponentComponent implements OnInit {
         motherName:[this.user.motherName],
         isActive:[true]
       });
-  }
-  setFormData(user :any ){
-    //this.formUserUpdate.get('name').setValue(this.user.name);
   }
 }
